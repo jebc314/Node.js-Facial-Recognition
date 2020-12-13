@@ -113,7 +113,7 @@ function open_playlist() {
                 track_feel.push([track_items[i].track.id, response]);
                 output_paragraph.innerHTML += [track_items[i].track.name, track_items[i].track.id, response].toString() + "<br>";
                 var feeling = document.getElementById("feeling");
-                if (response.includes(feeling.innerHTML)) {
+                if (response[0].includes(feeling.innerHTML)) {
                     var frame = document.getElementById("music_player");
                     frame.src = "https://open.spotify.com/embed/track/" + track_items[i].track.id;
                 }
