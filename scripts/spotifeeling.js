@@ -91,16 +91,12 @@ function open_playlist() {
         }
     });
 
-    $.ajax({
-        url:"https://python-side.herokuapp.com/" + text,
-        dataType: 'jsonp', // Notice! JSONP <-- P (lowercase)
-        success:function(json){
-            // do stuff with json (in this case an array)
-            console.log(json);
-            alert("Success");
-        },
-        error:function(){
-            alert("Error");
-        }      
-   });
+
+    const Http = new XMLHttpRequest();
+    const url='https://python-side.herokuapp.com/' + text;
+    Http.open("GET", url);
+    Http.send();
+    Http.onreadystatechange = (e) => {
+        console.log(Http.responseText);
+    }
 }
