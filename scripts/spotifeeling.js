@@ -98,5 +98,5 @@ function open_playlist() {
     Http.send();
     Http.onreadystatechange = (e) => {
         console.log(Http.responseText);
-    }
+    };
 }
