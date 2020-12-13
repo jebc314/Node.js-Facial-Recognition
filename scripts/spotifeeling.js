@@ -112,7 +112,7 @@ function open_playlist() {
                 console.log('CORS anywhere response', response);
                 track_feel.push([track_items[i].track.id, response]);
                 output_paragraph.innerHTML += [track_items[i].track.id, response].toString() + "<br>";
-                setTimeout(() => {  console.log("World!"); }, 100);
+                setTimeout(() => {  console.log("World!"); }, 1000);
             }).fail(function(jqXHR, textStatus) { 
                 console.error(textStatus)
             })
