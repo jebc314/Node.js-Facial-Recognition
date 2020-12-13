@@ -112,6 +112,11 @@ function open_playlist() {
                 console.log('CORS anywhere response', response);
                 track_feel.push([track_items[i].track.id, response]);
                 output_paragraph.innerHTML += [track_items[i].track.name, track_items[i].track.id, response].toString() + "<br>";
+                var feeling = document.getElementById("feeling");
+                if (response.includes(feeling.innerHTML)) {
+                    var frame = document.getElementById("music_player");
+                    frame.src = "https://open.spotify.com/embed/track/" + track_items[i].track.id;
+                }
                 setTimeout(() => {  console.log("World!"); }, 1000);
             }).fail(function(jqXHR, textStatus) { 
                 console.error(textStatus)
