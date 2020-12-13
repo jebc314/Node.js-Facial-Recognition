@@ -111,7 +111,7 @@ function open_playlist() {
             }).done(function(response) {
                 console.log('CORS anywhere response', response);
                 track_feel.push([track_items[i].track.id, response]);
-                output_paragraph.innerHTML += [track_items[i].track.id, response].toString();
+                output_paragraph.innerHTML += [track_items[i].track.id, response].toString() + "<br>";
                 setTimeout(() => {  console.log("World!"); }, 100);
             }).fail(function(jqXHR, textStatus) { 
                 console.error(textStatus)
