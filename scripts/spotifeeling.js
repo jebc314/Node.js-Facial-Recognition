@@ -89,15 +89,14 @@ function open_playlist() {
                     +", " + d.liveness + ", " + d.valence + ", " + d.tempo;
                 
                     track_ids.push([track_items[i].track.id, send_text]);
+                    return send_text;
                 },
                 function (err) {
                     console.error(err);
                 }
-            );
-        }
-    }).then(function() {
-        for (let i = 0; i<track_ids.length; i++) {
-            const info_url ='https://python-side.herokuapp.com/' + track_ids[i][1];
+            ).then(
+                function(send_text){
+                const info_url ='https://python-side.herokuapp.com/' + send;
 
             var queryURL = "https://cors-anywhere.herokuapp.com/" + info_url;
 
@@ -112,11 +111,12 @@ function open_playlist() {
             }).done(function(response) {
                 console.log('CORS anywhere response', response);
                 track_feel.push([track_items[i].track.id, response]);
-                output_paragraph.innerHTML += [track_ids[i][0], response].toString();
+                output_paragraph.innerHTML += [track_items[i], response].toString();
                 setTimeout(() => {  console.log("World!"); }, 100);
             }).fail(function(jqXHR, textStatus) { 
                 console.error(textStatus)
             })
+            });
         }
     });
 }
