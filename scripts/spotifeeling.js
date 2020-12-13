@@ -93,8 +93,8 @@ function open_playlist() {
 
 
     const Http = new XMLHttpRequest();
-    const url='https://python-side.herokuapp.com/' + text;
-    Http.open("GET", url);
+    const info_url ='https://python-side.herokuapp.com/' + text;
+    Http.open("GET", info_url);
     Http.send();
     Http.onreadystatechange = (e) => {
         console.log(Http.responseText);
