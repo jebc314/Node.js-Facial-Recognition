@@ -91,7 +91,7 @@ function open_playlist() {
         }
     });
 
- /*
+    text = "0.357,  0.425,  5,  -7.301,  1,  0.0333,  0.584,  0,  0.322,  0.27,  102.078";
     const info_url ='https://python-side.herokuapp.com/' + text;
 
     var queryURL = "https://cors-anywhere.herokuapp.com/" + info_url;
@@ -109,14 +109,4 @@ function open_playlist() {
     }).fail(function(jqXHR, textStatus) { 
       console.error(textStatus)
     })
-    */
-   var text;
-
-    $("#result").load("https://python-side.herokuapp.com/" + text, function() {
-        text = $("result").contents().find("body").innerHTML;
-        
-        console.log(text);
-    });
-
-
 }
