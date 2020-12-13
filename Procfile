@@ -1,2 +1,2 @@
-"npm start"
-"web: python testing.py" 
+web: npm start
+pipinstall: pip install -r requirements.txt
