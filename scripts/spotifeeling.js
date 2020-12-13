@@ -103,7 +103,7 @@ function open_playlist() {
                     }).done(function(response) {
                     console.log('CORS anywhere response', response);
                     track_feel.push([track_items[i].track.id, response]);
-                    output_paragraph.innerHTML = ""+track_feel;
+                    output_paragraph.innerHTML = track_feel.toString();
                     }).fail(function(jqXHR, textStatus) { 
                     console.error(textStatus)
                     })
