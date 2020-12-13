@@ -96,7 +96,7 @@ function open_playlist() {
                 }
             ).then(
                 function(send_text){
-                const info_url ='https://python-side.herokuapp.com/' + send;
+                const info_url ='https://python-side.herokuapp.com/' + send_text;
 
             var queryURL = "https://cors-anywhere.herokuapp.com/" + info_url;
 
