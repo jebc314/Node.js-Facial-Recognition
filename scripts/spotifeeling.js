@@ -1,5 +1,3 @@
-var spotifyApi = new SpotifyWebApi();
-
 window.onload = function() {
     var input = document.getElementById("form").elements[0];
     input.addEventListener("keypress", function(event) {
@@ -20,7 +18,8 @@ window.onload = function() {
           document.getElementById("submit_button").click();
         }
       });
-
+      var spotifyApi = new SpotifyWebApi();
+      
       var callback_url = window.location.href;
       const api_url = "https://accounts.spotify.com/authorize?client_id=603a3368045e46f7ac6e93eae3b95595&response_type=token&redirect_uri="+callback_url;
       var access_token;
