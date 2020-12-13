@@ -91,9 +91,16 @@ function open_playlist() {
         }
     });
 
-    var text;
-
-    $("#result").load("https://python-side.herokuapp.com/" + text, function() {
-        text = $("result").contents().find("body").innerHTML;
-    });
+    $.ajax({
+        url:"https://python-side.herokuapp.com/" + text,
+        dataType: 'jsonp', // Notice! JSONP <-- P (lowercase)
+        success:function(json){
+            // do stuff with json (in this case an array)
+            console.log(json);
+            alert("Success");
+        },
+        error:function(){
+            alert("Error");
+        }      
+   });
 }
