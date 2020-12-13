@@ -92,19 +92,21 @@ function open_playlist() {
     });
 
 
-    const Http = new XMLHttpRequest();
     const info_url ='https://python-side.herokuapp.com/' + text;
-    Http.open("GET", info_url);
-    Http.send();
-    Http.onreadystatechange = (e) => {
-        if (this.readystate == 4) {
-            if (this.status == 200) {
-               console.log(Http.responseText);
-            }
-            else {
-              // Probably an error
-              console.log(this.status + " OMG");
-            }
-          }
-    }
+
+    var queryURL = "https://cors-anywhere.herokuapp.com/" + info_url;
+
+    $.ajax({
+      url: queryURL,
+      method: "GET",
+      dataType: "json",
+      // this headers section is necessary for CORS-anywhere
+      headers: {
+        "x-requested-with": "xhr" 
+      }
+    }).done(function(response) {
+      console.log('CORS anywhere response', response);
+    }).fail(function(jqXHR, textStatus) { 
+      console.error(textStatus)
+    })
 }
