@@ -95,28 +95,28 @@ function open_playlist() {
                 }
             );
         }
+    }).then(function() {
+        for (let i = 0; i<track_ids.length; i++) {
+            const info_url ='https://python-side.herokuapp.com/' + track_ids[i][1];
+
+            var queryURL = "https://cors-anywhere.herokuapp.com/" + info_url;
+
+            $.ajax({
+                url: queryURL,
+                method: "GET",
+                dataType: "json",
+                // this headers section is necessary for CORS-anywhere
+                headers: {
+                    "x-requested-with": "xhr" 
+                }
+            }).done(function(response) {
+                console.log('CORS anywhere response', response);
+                track_feel.push([track_items[i].track.id, response]);
+                output_paragraph.innerHTML += [track_ids[i][0], response].toString();
+                setTimeout(() => {  console.log("World!"); }, 100);
+            }).fail(function(jqXHR, textStatus) { 
+                console.error(textStatus)
+            })
+        }
     });
-    
-    for (let i = 0; i<track_ids.length; i++) {
-        const info_url ='https://python-side.herokuapp.com/' + track_ids[i][1];
-
-        var queryURL = "https://cors-anywhere.herokuapp.com/" + info_url;
-
-        $.ajax({
-            url: queryURL,
-            method: "GET",
-            dataType: "json",
-            // this headers section is necessary for CORS-anywhere
-            headers: {
-                "x-requested-with": "xhr" 
-            }
-        }).done(function(response) {
-            console.log('CORS anywhere response', response);
-            track_feel.push([track_items[i].track.id, response]);
-            output_paragraph.innerHTML += [track_ids[i][0], response].toString();
-            setTimeout(() => {  console.log("World!"); }, 100);
-        }).fail(function(jqXHR, textStatus) { 
-            console.error(textStatus)
-        })
-    }
 }
