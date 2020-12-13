@@ -17,6 +17,7 @@
   },
   "homepage": "https://gitlab.com/BillyFnh/nodejs-face-api-test#readme",
   "dependencies": {
+    "child_process": "^1.0.2",
     "live-server": "^1.2.1"
   }
 }
