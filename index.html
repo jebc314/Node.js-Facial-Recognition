@@ -29,6 +29,27 @@
 
 <body>
   <video id="targetVideo" height="720" width="560" autoplay="true" autoplay controls></video>
+
+  <p id="message"></p>
+  <script>
+    
+    const {spawn} = require('child_process');
+    var dataToSend;
+    // spawn new child process to call the python script
+    const python = spawn('python', ['testing.py']);
+    // collect data from script
+    python.stdout.on('data', function (data) {
+        console.log('Pipe data from python script ...');
+        dataToSend = data.toString();
+    });
+    // in close event we are sure that stream from child process is closed
+    python.on('close', (code) => {
+    console.log(`child process close all stdio with code ${code}`);
+    });
+
+    var message = document.getElementById("message");
+    message.innerHTML = dataToSend;
+  </script>
 </body>
 
 </html>
