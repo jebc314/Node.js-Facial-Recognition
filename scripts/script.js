@@ -24,7 +24,17 @@ video.addEventListener('play', () => {
     setInterval(async () => {
         const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
         try {
-            //console.log(detections[0].expressions);   
+            //console.log(detections[0].expressions);  
+            var max = 0;
+            var max_feeling;
+            for (let key in detections[0].expressions) {
+                if (detections[0].expressions[key] > max) {
+                    max = detections[0].expressions[key];
+                    max_feeling = key;
+                }
+            }
+            var feeling = document.getElementById("feeling");
+            feeling.innerHTML = max_feeling;
         } catch (err) {
             console.log("detections unavailable");
         }
