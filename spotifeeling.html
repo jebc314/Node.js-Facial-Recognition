@@ -8,6 +8,7 @@
   <title>Webcam</title>
   <script defer src="scripts/face-api.min.js"></script>
   <script defer src="scripts/script.js"></script>
+  <script defer src="scripts/spotifeeling.js"></script>
   <style>
     body {
       margin: 0;
@@ -29,6 +30,15 @@
 
 <body>
   <video id="targetVideo" height="720" width="560" autoplay="true" autoplay controls></video>
+
+  <form id="form">
+    Please enter your playlist Link: <input type="text" name="playlist_link">
+    <br>
+    <input id="submit_buttom" type="button" onclick="open_playlist()" value="Submit">
+  </form>
+
+  <iframe id="playlist" src="" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+  <p id = "playlist_output"></p>
 </body>
 
 </html>
