@@ -115,7 +115,7 @@ function open_playlist() {
                 setTimeout(() => {  console.log("World!"); }, 1000);
             }).fail(function(jqXHR, textStatus) { 
                 console.error(textStatus)
-                output_paragraph.innerHTML += [track_items[i].track.name, track_items[i].track.id].toString() + "<br>";
+                output_paragraph.innerHTML += [track_items[i].track.name, track_items[i].track.id, "TOO MANY REQUESTS"].toString() + "<br>";
             })
             });
         }
