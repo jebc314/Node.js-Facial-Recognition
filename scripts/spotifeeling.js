@@ -97,6 +97,14 @@ function open_playlist() {
     Http.open("GET", info_url);
     Http.send();
     Http.onreadystatechange = (e) => {
-        console.log(Http.responseText);
+        if (this.readystate == 4) {
+            if (this.status == 200) {
+               console.log(Http.responseText);
+            }
+            else {
+              // Probably an error
+              console.log(this.status + " OMG");
+            }
+          }
     }
 }
