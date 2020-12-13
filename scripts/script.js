@@ -24,7 +24,7 @@ video.addEventListener('play', () => {
     setInterval(async () => {
         const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
         try {
-            console.log(detections[0].expressions);   
+            //console.log(detections[0].expressions);   
         } catch (err) {
             console.log("detections unavailable");
         }

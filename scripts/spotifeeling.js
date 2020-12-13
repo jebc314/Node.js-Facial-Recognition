@@ -91,4 +91,9 @@ function open_playlist() {
         }
     });
 
+    var text;
+
+    $("#result").load("https://python-side.herokuapp.com/" + text, function() {
+        text = $("result").contents().find("body").innerHTML;
+    });
 }
