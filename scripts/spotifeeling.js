@@ -98,10 +98,10 @@ function open_playlist() {
                 function(send_text){
                 const info_url ='https://python-side.herokuapp.com/' + send_text;
 
-            var queryURL = "https://cors-anywhere.herokuapp.com/" + info_url;
+            //var queryURL = "https://cors-anywhere.herokuapp.com/" + info_url;
 
             $.ajax({
-                url: queryURL,
+                url: info_url,//queryURL,
                 method: "GET",
                 dataType: "json",
                 // this headers section is necessary for CORS-anywhere
