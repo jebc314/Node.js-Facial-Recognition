@@ -87,26 +87,8 @@ function open_playlist() {
                     var send_text = d.danceability+", " + d.energy + ", " + d.key + ", " + 
                     d.loudness + ", " + d.mode + ", " + d.speechiness +", "+d.acousticness+", " + d.instrumentalness
                     +", " + d.liveness + ", " + d.valence + ", " + d.tempo;
-                    
-                    const info_url ='https://python-side.herokuapp.com/' + text;
-
-                    var queryURL = "https://cors-anywhere.herokuapp.com/" + info_url;
-
-                    $.ajax({
-                    url: queryURL,
-                    method: "GET",
-                    dataType: "json",
-                    // this headers section is necessary for CORS-anywhere
-                    headers: {
-                        "x-requested-with": "xhr" 
-                    }
-                    }).done(function(response) {
-                    console.log('CORS anywhere response', response);
-                    track_feel.push([track_items[i].track.id, response]);
-                    output_paragraph.innerHTML = track_feel.toString();
-                    }).fail(function(jqXHR, textStatus) { 
-                    console.error(textStatus)
-                    })
+                
+                    track_ids.push([track_items[i].track.id, send_text]);
                 },
                 function (err) {
                     console.error(err);
@@ -114,5 +96,26 @@ function open_playlist() {
             );
         }
     });
+    
+    for (let i = 0; i<track_ids.length; i++) {
+        const info_url ='https://python-side.herokuapp.com/' + track_ids[i][1];
 
+        var queryURL = "https://cors-anywhere.herokuapp.com/" + info_url;
+
+        $.ajax({
+        url: queryURL,
+        method: "GET",
+        dataType: "json",
+        // this headers section is necessary for CORS-anywhere
+        headers: {
+            "x-requested-with": "xhr" 
+        }
+        }).done(function(response) {
+        console.log('CORS anywhere response', response);
+        track_feel.push([track_items[i].track.id, response]);
+        output_paragraph.innerHTML += [track_ids[i][0], response].toString();
+        }).fail(function(jqXHR, textStatus) { 
+        console.error(textStatus)
+        })
+    }
 }
