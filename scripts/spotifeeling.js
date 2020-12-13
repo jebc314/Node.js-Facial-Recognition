@@ -56,7 +56,7 @@ function open_playlist() {
     access_token = hash;
     spotifyApi.setAccessToken(access_token);
 
-    var form = document.getElementById("form2");
+    var form = document.getElementById("form");
     var text = form.elements[0].value;
     console.log(text);
     text = text.split("playlist/")[1];
