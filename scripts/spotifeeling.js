@@ -110,11 +110,13 @@ function open_playlist() {
       console.error(textStatus)
     })
     */
-   const Http = new XMLHttpRequest();
-const info_url ='https://python-side.herokuapp.com/' + text;
-Http.open("GET", info_url);
-Http.send();
-Http.onreadystatechange = (e) => {
-  console.log(Http.responseText)
-}
+   var text;
+
+    $("#result").load("https://python-side.herokuapp.com/" + text, function() {
+        text = $("result").contents().find("body").innerHTML;
+        
+        console.log(text);
+    });
+
+
 }
