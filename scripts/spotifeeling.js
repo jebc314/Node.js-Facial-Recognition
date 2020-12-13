@@ -39,6 +39,7 @@ window.onload = function() {
 }
 
 var track_ids = [];
+var track_feel = [];
 
 function open_playlist() {
     var callback_url = window.location.href;
@@ -76,13 +77,36 @@ function open_playlist() {
         var track_items = data.tracks.items;
         var output_string = "";
         var output_paragraph = document.getElementById("playlist_output");
-        for (let i = 0; i < 100; i++)
+        for (let i = 0; i < track_items.length; i++)
         {
             spotifyApi.getAudioFeaturesForTrack(track_items[i].track.id).then(
                 function (d) {
                     output_string += JSON.stringify(d, null, 2) + "<br>";
                     output_paragraph.innerHTML = output_string;
                     setTimeout(() => {  console.log("World!"); }, 10);
+                    var send_text = d.danceability+", " + d.energy + ", " + d.key + ", " + 
+                    d.loudness + ", " + d.mode + ", " + d.speechiness +", "+d.acousticness+", " + d.instrumentalness
+                    +", " + d.liveness + ", " + d.valence + ", " + d.tempo;
+                    
+                    const info_url ='https://python-side.herokuapp.com/' + text;
+
+                    var queryURL = "https://cors-anywhere.herokuapp.com/" + info_url;
+
+                    $.ajax({
+                    url: queryURL,
+                    method: "GET",
+                    dataType: "json",
+                    // this headers section is necessary for CORS-anywhere
+                    headers: {
+                        "x-requested-with": "xhr" 
+                    }
+                    }).done(function(response) {
+                    console.log('CORS anywhere response', response);
+                    track_feel.push([track_items[i].track.id, response]);
+                    output_paragraph.innerHTML = ""+track_feel;
+                    }).fail(function(jqXHR, textStatus) { 
+                    console.error(textStatus)
+                    })
                 },
                 function (err) {
                     console.error(err);
@@ -91,22 +115,4 @@ function open_playlist() {
         }
     });
 
-    text = "0.357,  0.425,  5,  -7.301,  1,  0.0333,  0.584,  0,  0.322,  0.27,  102.078";
-    const info_url ='https://python-side.herokuapp.com/' + text;
-
-    var queryURL = "https://cors-anywhere.herokuapp.com/" + info_url;
-
-    $.ajax({
-      url: queryURL,
-      method: "GET",
-      dataType: "json",
-      // this headers section is necessary for CORS-anywhere
-      headers: {
-        "x-requested-with": "xhr" 
-      }
-    }).done(function(response) {
-      console.log('CORS anywhere response', response);
-    }).fail(function(jqXHR, textStatus) { 
-      console.error(textStatus)
-    })
 }
